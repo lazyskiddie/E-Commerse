@@ -1,4 +1,18 @@
 package com.example.E_commerce.Admin.Service;
 
-public class CoffeeServiceImpl {
+import com.example.E_commerce.Coffee;
+import com.example.E_commerce.Admin.Repo.CoffeeRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CoffeeServiceImpl implements CoffeeService {
+
+    @Autowired
+    private CoffeeRepo coffeeRepo;
+
+    @Override
+    public Coffee saveCoffee(Coffee coffee) {
+        return coffeeRepo.save(coffee);
+    }
 }
