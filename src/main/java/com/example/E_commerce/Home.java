@@ -1,6 +1,5 @@
 package com.example.E_commerce;
 
-import com.example.E_commerce.Admin.Coffee;
 import com.example.E_commerce.Admin.Service.CoffeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +40,7 @@ public class Home {
         return "products";
     }
 
-    @RequestMapping("/Admin")
+//    @RequestMapping("/Admin")
     @GetMapping("/admin")
     public String admin(){
         return "admin";
@@ -51,7 +50,7 @@ public class Home {
     public String saveCoffee(@ModelAttribute Coffee coffee, RedirectAttributes redirectAttributes){
         coffeeService.saveCoffee(coffee);
         redirectAttributes.addFlashAttribute("message", "Coffee saved successfully");
-        return "redirect:/Admin/admin";
+        return "redirect:/admin";
     }
 
 
