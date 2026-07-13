@@ -54,7 +54,7 @@
         <span class="eyebrow">This week's lots</span>
         <h2>Fresh off the roaster</h2>
       </div>
-      <a href="products.jsp" class="btn btn-outline">View all coffee</a>
+      <a href="/products" class="btn btn-outline">View all coffee</a>
     </div>
 
     <div class="product-grid">
@@ -63,7 +63,7 @@
         <div class="card">
           <a href="product.jsp?id=${id}">
             <div class="card-media ${p[9]}">
-              <span class="glyph">${p[10]}</span>
+              <img src="${p[10]}" alt="${p[1]}" style="width: 100%; height: 100%; object-fit: cover;">
               <c:if test="${not empty p[4]}">
                 <div class="badge">${p[3]}<br>${p[4]}</div>
               </c:if>
@@ -75,8 +75,8 @@
             <p class="desc">${p[11]}</p>
             <div class="price-row">
               <div>
-                <c:if test="${not empty p[8]}"><span class="price strike">$${p[8]}</span></c:if>
-                <span class="price">$${p[7]}</span>
+                <c:if test="${not empty p[8]}"><span class="price strike">₹${p[8]}</span></c:if>
+                <span class="price">₹${p[7]}</span>
               </div>
               <button class="add-btn" data-add-id="${id}"
                 onclick="addToCart('${id}','${p[1]}','${p[7]}','${p[9]}','${p[10]}',1)">Add to cart</button>
