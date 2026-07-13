@@ -12,13 +12,16 @@
 --%>
 <%
     List<String[]> productList = new ArrayList<String[]>();
-    productList.add(new String[]{"1","Cerro Alto","Whole Bean","Huila, Colombia","2026-06-18","Washed","340","19.50","","tone-1","CA","A bright, syrupy cup with notes of red apple and raw cane sugar. Our best-selling washed lot, three years running."});
-    productList.add(new String[]{"2","Kirinyaga Peak","Whole Bean","Kirinyaga, Kenya","2026-06-24","Washed","227","23.00","26.00","tone-2","KP","Blackcurrant and grapefruit up front, with a winey acidity that lingers. Small lot, picked at peak ripeness."});
-    productList.add(new String[]{"3","Yirgacheffe Dawn","Ground","Gedeo Zone, Ethiopia","2026-06-11","Natural","340","21.00","","tone-3","YD","Sun-dried on raised beds for eighteen days. Jasmine and stone fruit, finishing like fermented strawberry."});
-    productList.add(new String[]{"4","Foundry Pour-Over Kit","Brew Gear","Made in-house","","","","64.00","","tone-4","PK","Cone dripper, 40 unbleached filters, and a gooseneck kettle spout adapter. Everything to start pouring properly."});
-    productList.add(new String[]{"5","Chemex Six-Cup","Brew Gear","Borosilicate glass","","","","48.00","","tone-1","CX","The classic hourglass carafe. One piece of glass, no seams, brews for a whole table."});
-    productList.add(new String[]{"6","Field Grinder","Brew Gear","Steel burr, hand crank","","","","89.00","98.00","tone-2","FG","40mm conical steel burrs and 31 click stops, from espresso-fine to French-press-coarse."});
-    productList.add(new String[]{"7","Sidra Reserve","Whole Bean","Cauca, Colombia","2026-06-29","Honey","340","27.50","","tone-3","SR","A rotating varietal lot — this season it's Sidra, honey-processed for a heavy body and tropical fruit sweetness."});
-    productList.add(new String[]{"8","Rift Valley Blend","Ground","East Africa blend","2026-06-20","Mixed","454","18.00","","tone-4","RV","Our house blend for drip machines: three washed lots balanced for a clean, no-surprises everyday cup."});
-    productList.add(new String[]{"9","Amber Glass Canister","Brew Gear","500g capacity","","","","22.00","","tone-1","AC","UV-blocking glass with an airtight steel clasp lid. Keeps beans fresh two weeks past the bag date."});
+    productList.add(new String[]{"1","Double Espresso","Espresso Bar","House Blend","","Hot","2oz","250","","tone-1","/images/Double_Espresso_imp.png","A rich, full-bodied double shot of our signature house blend with a thick, hazelnut-colored crema."});
+    productList.add(new String[]{"2","Classic Cortado","Espresso Bar","House Blend","","Hot","4oz","300","","tone-2","CC","Equal parts double espresso and gently steamed milk for a perfectly balanced, velvety cup."});
+    productList.add(new String[]{"3","Oat Milk Flat White","Espresso Bar","Single Origin","","Hot","8oz","400","450","tone-3","FW","Micro-foamed oat milk poured carefully over a double ristretto shot for a naturally sweet, creamy texture."});
+
+    productList.add(new String[]{"4","Iced Vanilla Latte","Cold Beverage","House Blend","","Iced","16oz","420","","tone-2","IVL","Double espresso poured over ice and milk, sweetened with our house-made Madagascar vanilla bean syrup."});
+    productList.add(new String[]{"5","Nitro Cold Brew","Cold Beverage","Colombia Reserve","","Cold","16oz","380","420","tone-3","NCB","Steeped for 18 hours and infused with nitrogen for a beautiful stout-like cascade and ultra-smooth mouthfeel."});
+    productList.add(new String[]{"6","Dark Chocolate Mocha","Specialty Espresso","House Blend","","Hot","12oz","480","","tone-4","DCM","Rich 70% dark chocolate melted into a double espresso, topped with textured milk and a dusting of cocoa."});
+    productList.add(new String[]{"7","Ceremonial Matcha Latte","Tea Beverage","Uji, Japan","","Hot","12oz","500","","tone-1","CML","Stone-ground ceremonial matcha whisked to order, folded into silky steamed milk with a hint of honey."});
+    productList.add(new String[]{"8","Batch Brew Drip","Filter Coffee","Colombia Huila","","Hot","12oz","200","","tone-1","BD","Our daily rotating batch brew. Fast, fresh, and perfectly extracted for a clean everyday cup."});
+    productList.add(new String[]{"9","V60 Pour-Over","Filter Coffee","Ethiopia Yirgacheffe","","Hot","12oz","350","","tone-4","V6","Hand-brewed filter coffee highlighting bright floral notes, peach, and a clean, tea-like finish."});
+
+    pageContext.setAttribute("productList", productList);
 %>
