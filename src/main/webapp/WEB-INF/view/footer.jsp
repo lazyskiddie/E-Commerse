@@ -9,16 +9,16 @@
     </div>
     <div>
       <h4>Shop</h4>
-      <a href="products.jsp">All Coffee</a>
-      <a href="products.jsp?category=Brew+Gear">Brew Gear</a>
-      <a href="products.jsp?category=Whole+Bean">Whole Bean</a>
-      <a href="products.jsp?category=Ground">Ground</a>
+      <a href="/products">All Coffee</a>
+      <a href="/products?category=Brew+Gear">Brew Gear</a>
+      <a href="/products?category=Whole+Bean">Whole Bean</a>
+      <a href="/products?category=Ground">Ground</a>
     </div>
     <div>
       <h4>Help</h4>
-      <a href="cart.jsp">Your Cart</a>
+      <a href="/cart">Your Cart</a>
       <a href="login.jsp">Account</a>
-      <a href="checkout.jsp">Checkout</a>
+      <a href="/checkout">Checkout</a>
     </div>
     <div>
       <h4>Visit</h4>
