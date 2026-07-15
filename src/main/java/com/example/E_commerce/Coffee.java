@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Data
@@ -18,4 +19,7 @@ public class Coffee {
     private String name;
     private double price;
     private String Description;
+    @Transient
+    private MultipartFile image;
+    private String imageFileName;
 }
