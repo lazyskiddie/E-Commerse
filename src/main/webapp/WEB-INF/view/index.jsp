@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%@ include file="products-data.jspf" %>
 <c:set var="activePage" value="home" />
 <!DOCTYPE html>
 <html lang="en">
@@ -24,8 +23,8 @@
         roast date stamped on the label — because knowing where a coffee
         came from changes how it tastes.</p>
       <div class="hero-actions">
-        <a href="products.jsp" class="btn btn-primary">Shop the current lots</a>
-        <a href="products.jsp?category=Brew+Gear" class="btn btn-outline">Browse brew gear</a>
+        <a href="/products" class="btn btn-primary">Shop the current lots</a>
+        <a href="/products" class="btn btn-outline">Browse brew gear</a>
       </div>
       <div class="hero-tags">
         <span>Direct trade</span>
@@ -58,28 +57,23 @@
     </div>
 
     <div class="product-grid">
-      <c:forEach var="p" items="${productList}" begin="0" end="3">
-        <c:set var="id" value="${p[0]}" />
+      <%-- Loop through the database records passed from the Controller --%>
+      <c:forEach var="p" items="${listOfService}" begin="0" end="3">
         <div class="card">
-          <a href="product.jsp?id=${id}">
-            <div class="card-media ${p[9]}">
-              <img src="${p[10]}" alt="${p[1]}" style="width: 100%; height: 100%; object-fit: cover;">
-              <c:if test="${not empty p[4]}">
-                <div class="badge">${p[3]}<br>${p[4]}</div>
-              </c:if>
+          <a href="/product?id=${p.id}">
+            <div class="card-media tone-1">
+              <img src="/images/Services/${p.imageFileName}" alt="${p.name}" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
           </a>
           <div class="card-body">
-            <c:if test="${not empty p[3]}"><div class="origin">${p[3]}</div></c:if>
-            <h3><a href="product.jsp?id=${id}">${p[1]}</a></h3>
-            <p class="desc">${p[11]}</p>
+            <h3><a href="/product?id=${p.id}">${p.name}</a></h3>
+            <p class="desc">${p.description}</p>
             <div class="price-row">
               <div>
-                <c:if test="${not empty p[8]}"><span class="price strike">₹${p[8]}</span></c:if>
-                <span class="price">₹${p[7]}</span>
+                <span class="price">₹${p.price}</span>
               </div>
-              <button class="add-btn" data-add-id="${id}"
-                onclick="addToCart('${id}','${p[1]}','${p[7]}','${p[9]}','${p[10]}',1)">Add to cart</button>
+              <button class="add-btn" data-add-id="${p.id}"
+                onclick="addToCart('${p.id}','${p.name}','${p.price}','tone-1','',1)">Add to cart</button>
             </div>
           </div>
         </div>
