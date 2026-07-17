@@ -3,6 +3,7 @@ package com.example.E_commerce;
 import com.example.E_commerce.Admin.Service.CoffeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,17 +44,10 @@ public class adminConfiguratuion {
     public String addService(@ModelAttribute Coffee coffee, RedirectAttributes redirectAttributes){
         try {
             MultipartFile image = coffee.getImage();
-
-            // 1. Define your target folder
             File saveDir = new File("src/main/resources/static/images/Services");
-
-            // 2. Generate the unique filename
             String originalFileName = UUID.randomUUID().toString() + "_" + image.getOriginalFilename();
 
-            // 3. FIX: Combine the ABSOLUTE path of the folder with the filename
             File file = new File(saveDir.getAbsolutePath(), originalFileName);
-
-            // 4. Try to save the file
             image.transferTo(file);
 
             coffeeService.saveCoffee(coffee, originalFileName);
@@ -62,7 +56,12 @@ public class adminConfiguratuion {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("message", "Failed to upload image: " + e.getMessage());
         }
-
         return "redirect:/admin/addService";
+    }
+
+    @GetMapping("/readService")
+    public String readService(Model model){
+        model.addAttribute("listOfServices", coffeeService.readService());
+        return "admin/readService";
     }
 }
