@@ -3,7 +3,7 @@
    localStorage and re-rendered on each page load. */
 
 const CART_KEY = "eo_cart";
-const SHIPPING_FLAT = 6.50;
+const SHIPPING_FLAT = 50;
 const FREE_SHIPPING_OVER = 50;
 
 function getCart() {
@@ -67,7 +67,7 @@ function changeCartQty(id, delta) {
 }
 
 function currency(n) {
-  return "$" + n.toFixed(2);
+  return "₹" + n.toFixed(2);
 }
 
 /* ---- Cart page rendering ---- */
@@ -91,7 +91,9 @@ function renderCartPage() {
 
   container.innerHTML = cart.map(item => `
     <div class="cart-line">
-      <div class="cart-thumb ${item.tone}">${item.glyph}</div>
+      <div class="cart-thumb ${item.tone}">
+        <img src="${item.glyph}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
+      </div>
       <div>
         <h4>${item.name}</h4>
         <div class="origin">${currency(item.price)} each</div>
