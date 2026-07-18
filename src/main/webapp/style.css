@@ -573,6 +573,26 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   justify-content: flex-end;
 }
 
+/* Larger featured variant — used on the homepage for stronger visual pull */
+.menu-item.featured {
+  gap: 26px;
+  padding: 26px 0;
+}
+.menu-item.featured .menu-item-media {
+  width: 180px;
+  height: 180px;
+}
+.menu-item.featured .menu-item-head h3 {
+  font-size: 1.3rem;
+}
+.menu-item.featured .menu-item-head .price {
+  font-size: 1.1rem;
+}
+.menu-item.featured p.desc {
+  font-size: 0.92rem;
+  max-width: 46ch;
+}
+
 /* filter bar */
 .filter-bar {
   display: flex;
@@ -606,6 +626,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .pdp-media {
   aspect-ratio: 1;
   border-radius: var(--radius);
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -870,6 +891,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .summary-box { position: static; }
   .site-footer .wrap { grid-template-columns: 1fr 1fr; }
   .menu-list { grid-template-columns: 1fr; }
+  .menu-item.featured .menu-item-media { width: 130px; height: 130px; }
   .visit-section .wrap { grid-template-columns: 1fr; }
   .visit-figure { max-width: 420px; margin: 0 auto; }
   .hours-strip .wrap { height: auto; padding: 8px 0; }
