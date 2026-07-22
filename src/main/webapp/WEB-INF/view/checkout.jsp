@@ -49,16 +49,6 @@
             <input type="text" id="ckZip" required>
           </div>
         </div>
-        <div class="field">
-          <label for="ckCountry">Country</label>
-          <select id="ckCountry">
-            <option>United States</option>
-            <option>Canada</option>
-            <option>United Kingdom</option>
-            <option>India</option>
-            <option>Australia</option>
-          </select>
-        </div>
       </div>
 
       <div class="auth-card">
