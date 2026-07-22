@@ -11,4 +11,6 @@ public interface CoffeeService {
     Coffee saveCoffee(Coffee coffee, String originalName);
 
     List<Coffee> readService();
+
+    Void deleteCoffee(String realPath, int id, String imageFileName);
 }
