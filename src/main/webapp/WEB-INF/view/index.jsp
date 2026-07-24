@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ember &amp; Oak — Small-lot coffee, honestly sourced</title>
+  <title>Ember &amp; Oak — Caf&eacute; &amp; Coffee Bar</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,19 +17,19 @@
 <section class="hero">
   <div class="wrap">
     <div class="hero-copy">
-      <span class="eyebrow">Roasted in Portland, since 2019</span>
-      <h1>Coffee you can trace back to the farm.</h1>
-      <p class="lede">Every bag carries the lot number, the process, and the
-        roast date stamped on the label — because knowing where a coffee
-        came from changes how it tastes.</p>
+      <span class="eyebrow">Brewing in Portland, since 2019</span>
+      <h1>Coffee made the way you actually like it.</h1>
+      <p class="lede">Every cup is pulled to order — espresso dialed in
+        fresh, milk steamed to order, syrups made in-house — because
+        coffee should taste like someone actually made it for you.</p>
       <div class="hero-actions">
-        <a href="/products" class="btn btn-primary">Shop the current lots</a>
-        <a href="/products" class="btn btn-outline">Browse brew gear</a>
+        <a href="/products" class="btn btn-primary">Order ahead for pickup</a>
+        <a href="/products" class="btn btn-outline">Browse the menu</a>
       </div>
       <div class="hero-tags">
-        <span>Direct trade</span>
-        <span>Roasted weekly</span>
-        <span>Shipped within 48hrs of roast</span>
+        <span>Made to order</span>
+        <span>Espresso pulled fresh</span>
+        <span>Open 7 days a week</span>
       </div>
     </div>
 
@@ -37,9 +37,9 @@
       <div class="lot-stamp">
         <div class="ring"></div>
         <div class="stamp-text">
-          <span class="big">No. 214</span>
-          LOT&nbsp;·&nbsp;HUILA&nbsp;COLOMBIA<br>
-          ROASTED&nbsp;06.18.26
+          <span class="big">Est. 2019</span>
+          EMBER&nbsp;&amp;&nbsp;OAK&nbsp;·&nbsp;PORTLAND<br>
+          MADE&nbsp;FRESH&nbsp;DAILY
         </div>
       </div>
     </div>
@@ -50,28 +50,27 @@
   <div class="wrap">
     <div class="section-head">
       <div>
-        <span class="eyebrow">This week's lots</span>
-        <h2>Fresh off the roaster</h2>
+        <span class="eyebrow">Customer favorites</span>
+        <h2>What's brewing today</h2>
       </div>
       <a href="/products" class="btn btn-outline">View all coffee</a>
     </div>
 
-    <div class="product-grid">
+    <div class="menu-list" style="grid-template-columns:repeat(auto-fill, minmax(460px, 1fr)); gap:8px 48px;">
       <%-- Loop through the database records passed from the Controller --%>
       <c:forEach var="p" items="${listOfService}" begin="0" end="3">
-        <div class="card">
-          <a href="/product?id=${p.id}">
-            <div class="card-media tone-1">
-              <img src="/images/Services/${p.imageFileName}" alt="${p.name}" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
+        <div class="menu-item featured">
+          <a href="/product?id=${p.id}" class="menu-item-media tone-1">
+            <img src="/images/Services/${p.imageFileName}" alt="${p.name}">
           </a>
-          <div class="card-body">
-            <h3><a href="/product?id=${p.id}">${p.name}</a></h3>
+          <div class="menu-item-body">
+            <div class="menu-item-head">
+              <h3><a href="/product?id=${p.id}">${p.name}</a></h3>
+              <span class="menu-leader"></span>
+              <span class="price">₹${p.price}</span>
+            </div>
             <p class="desc">${p.description}</p>
-            <div class="price-row">
-              <div>
-                <span class="price">₹${p.price}</span>
-              </div>
+            <div class="menu-item-foot">
               <button class="add-btn" data-add-id="${p.id}"
                 onclick="addToCart('${p.id}','${p.name}','${p.price}','tone-1','',1)">Add to cart</button>
             </div>
@@ -87,25 +86,55 @@
     <div class="section-head">
       <div>
         <span class="eyebrow">How it works</span>
-        <h2>From cherry to cup</h2>
+        <h2>From order to cup</h2>
       </div>
     </div>
     <div class="product-grid" style="grid-template-columns:repeat(auto-fit, minmax(220px,1fr));">
       <div>
-        <h3>Sourced direct</h3>
-        <p class="desc">We buy each lot directly from the farm or a small
-          collective, at a price set before the harvest — not the commodity
-          rate.</p>
+        <h3>Pulled to order</h3>
+        <p class="desc">Every shot is pulled the moment you order — no
+          batch-brewed coffee sitting around going flat.</p>
       </div>
       <div>
-        <h3>Roasted in small batches</h3>
-        <p class="desc">12kg drum, roasted twice a week. Every bag lists the
-          exact roast date so you know how fresh it is.</p>
+        <h3>Steamed fresh</h3>
+        <p class="desc">Milk is steamed to order and textured just right,
+          whether it's going into a latte, cappuccino, or cortado.</p>
       </div>
       <div>
-        <h3>Shipped fast</h3>
-        <p class="desc">Bags go out within 48 hours of roasting, sealed with
-          a one-way valve to lock in the aroma.</p>
+        <h3>Made your way</h3>
+        <p class="desc">Extra shot, oat milk, light ice — however you take
+          your coffee, that's how we'll make it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section visit-section">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Come sit with us</span>
+      <h2>Visit the caf&eacute;</h2>
+      <p class="lede" style="max-width:42ch;">Pull up a stool at the bar, or
+        order ahead and swing by for pickup — either way, the espresso
+        machine's always warm.</p>
+
+      <table class="hours-table">
+        <tr><td>Monday &ndash; Friday</td><td>7:00 AM &ndash; 6:00 PM</td></tr>
+        <tr><td>Saturday</td><td>8:00 AM &ndash; 6:00 PM</td></tr>
+        <tr><td>Sunday</td><td>8:00 AM &ndash; 3:00 PM</td></tr>
+      </table>
+
+      <div class="hero-actions">
+        <a href="/products" class="btn btn-primary">Order ahead for pickup</a>
+        <a href="#footer-about" class="btn btn-outline">Get directions</a>
+      </div>
+    </div>
+
+    <div class="visit-figure">
+      <div class="frame"></div>
+      <div class="visit-text">
+        <span class="eyebrow">118 Kiln Street</span><br>
+        Portland, OR<br>Dine-in &amp; pickup
       </div>
     </div>
   </div>
