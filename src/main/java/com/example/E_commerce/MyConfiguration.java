@@ -39,4 +39,10 @@ public class MyConfiguration {
         model.addAttribute("listOfService", coffeeService.readService());
         return "products";
     }
+
+    // for when anyone try to login to the admin portal
+    @GetMapping("/unauthorized")
+    public String unauthorized(){
+        return "unauthorized";
+    }
 }
