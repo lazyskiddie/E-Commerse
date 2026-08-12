@@ -12,7 +12,7 @@ public class MyConfiguration {
     @Autowired
     private CoffeeService coffeeService;
 
-    @GetMapping(path = {"/index", "home"})
+    @GetMapping(path = {"/index", "home", "/"})
     public String home(Model model) {
         model.addAttribute("listOfService", coffeeService.readService());
         return "index";
@@ -44,5 +44,11 @@ public class MyConfiguration {
     @GetMapping("/unauthorized")
     public String unauthorized(){
         return "unauthorized";
+    }
+
+    // for the login to the admin
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 }
