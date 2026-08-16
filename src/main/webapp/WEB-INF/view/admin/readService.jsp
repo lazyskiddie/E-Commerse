@@ -115,6 +115,8 @@
 <h1 style="text-align: center;">Admin Panel</h1>
 
  <h3 style="text-align: center;"> Available Coffee </h3>
+ <a href ="${pageContext.request.contextPath}/admin/adminhome"> Admin Home </a>
+
 
  <div class="services-container">
      <c:forEach var="current" items="${listOfServices}">
