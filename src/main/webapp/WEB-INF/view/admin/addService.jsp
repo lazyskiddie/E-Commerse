@@ -19,7 +19,10 @@
  ${message}
 
 <h3 style="text-align: center;">Add Product</h3>
-<form action ="/saveCoffee" method ="post" style="width: 400px; margin: 20px auto; background-color: #4B0082; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
+
+<a href ="${pageContext.request.contextPath}/admin/adminhome"> Admin Home </a>
+
+<form action ="/admin/addService" method ="post" enctype="multipart/form-data" style="width: 400px; margin: 20px auto; background-color: #4B0082; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
 
     <label for="name" style="color: white;">Product Name:</label><br>
     <input type="text" id="name" name="name" placeholder="Enter product name"
@@ -33,6 +36,10 @@
     <textarea id="description" name="description" rows="4"
               placeholder="Enter product description"
               style="width: 100%; padding: 8px; margin: 8px 0 15px;"></textarea><br>
+
+    <label for="image" style="color: white;">Product Image:</label><br>
+        <input type="file" id="image" name="image" accept="image/*"
+               style="width: 100%; padding: 8px; margin: 8px 0 15px; box-sizing: border-box; background-color: white;"><br>
 
     <button type="submit"
             style="width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
