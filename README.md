@@ -1,112 +1,79 @@
-# Ember & Oak — E-Commerse
+# Ember & Oak — E-Commerce
 
 A classic cafe-themed website for a coffee shop with a royal, elegant feel.
 
-Description
+IMPORTANT PROJECT HIGHLIGHTS (what you need to know)
 
-This repository contains the source for "Ember & Oak" — an online presence for a coffee shop designed with a classic cafe theme and a premium/royal aesthetic. The site provides product listings, product details, a shopping cart, and checkout flows.
+- Build system: Maven (project includes pom.xml and Maven wrapper: mvnw, mvnw.cmd, and .mvn). Use ./mvnw to build/run consistently across environments.
+- Framework: Spring Boot (parent 4.1.0). Java version set to 17 in the build.
+- Web stack: Spring MVC + JSP (tomcat-embed-jasper + JSTL) — server-side rendered views under src/main/webapp/WEB-INF.
+- Persistence: Spring Data JPA with MySQL (mysql-connector-j runtime dependency). Check application properties for JDBC URL and credentials.
+- Security: Spring Security is enabled; custom security configuration classes are present (MySecurityConfg, adminConfiguratuion). Review access rules before production.
 
-Language composition
+Key files and locations (review these first)
 
-- Java: 58.9% (backend)
-- CSS: 31.8% (styling)
-- JavaScript: 9.3% (frontend behavior)
+- pom.xml — project dependencies, Java version, build plugins (Spring Boot Maven plugin, compiler settings for Lombok).
+- src/main/java/com/example/E_commerce/ECommerceApplication.java — Spring Boot main class. Important: it auto-creates an admin user on startup (see notes below).
+- src/main/java/com/example/E_commerce/* — entities and configuration classes (AdminEntity.java, Coffee.java, MyConfiguration.java, MySecurityConfg.java, adminConfiguratuion.java).
+- src/main/webapp/
+  - style.css — main CSS for the site
+  - main.js — client-side JS
+  - WEB-INF/ — JSP templates (server-rendered UI)
+- src/main/resources/ — application configuration files (look here for application.properties or application.yml)
+- LICENSE — license file at repo root
+- README.md — this file (project overview and important notes)
 
-Features
+Startup & runtime notes
 
-- Product catalog and product detail pages
-- Shopping cart and checkout (basic e-commerce flows)
-- Responsive UI with a classic/royal visual design
+- Default Java: The project specifies Java 17. Ensure your environment has JDK 17+.
+- Build and run with Maven wrapper:
 
-Prerequisites
+  - Build: ./mvnw clean package
+  - Run (development): ./mvnw spring-boot:run
 
-- Java JDK 11 or newer
-- Maven or Gradle (check for pom.xml or build.gradle in the repository root)
-- (Optional) Node.js + npm/yarn if the frontend uses a JS build step
+- Database: The app expects a MySQL database. Provide DB connection details via application.properties / application.yml or environment variables. If no DB is available, the app may fail to start or run in a limited state.
 
-Quick start (run locally)
+Security & sensitive initialization (action required)
 
-1. Clone the repository
+- Admin auto-creation: On startup the application retrieves UserRepository and PasswordEncoder and attempts to create an admin user if none exists. The current logic does a findByUsername("admin") but then creates an AdminEntity with username "UserName" and password encoded from the literal "Password". This is:
+  - Confusing/buggy (check the username mismatch), and
+  - A security risk (hardcoded credentials in code). Replace this with one of the following:
+    - Read initial admin credentials from environment variables or an external config (recommended), or
+    - Use a secure setup script / migration to create initial admin during deployment, or
+    - Remove default credentials entirely and use a one-time setup process.
 
-   git clone https://github.com/lazyskiddie/E-Commerse.git
-   cd E-Commerse
+- Review MySecurityConfg and adminConfiguratuion.java for roles and access control. Ensure password encoding, CSRF protection, and role checks meet your security requirements before deploying to production.
 
-2. Determine build tool
+Frontend & UX
 
-- If you have pom.xml (Maven):
+- The UI uses server-side JSP templates and static assets (style.css, main.js). The CSS is substantial and contains the visual theme — check style.css to tune visuals and responsive behavior.
+- main.js contains client-side behavior; ensure any sensitive endpoints are protected on the server side (don’t rely on frontend-only checks).
 
-  - Build: mvn clean package
-  - Run (Spring Boot or runnable jar): mvn spring-boot:run or java -jar target/<app>.jar
+Testing & CI
 
-- If you have build.gradle (Gradle):
+- Tests: src/test exists — run tests with mvn test or ./mvnw test.
+- CI: No GitHub Actions workflows detected at the repository root. Consider adding a simple workflow to run build/tests on pull requests.
 
-  - Build: ./gradlew build
-  - Run (Spring Boot): ./gradlew bootRun or java -jar build/libs/<app>.jar
+Immediate recommended actions
 
-- If neither exists, inspect src/ for instructions; the backend might be a servlet app or simple Java project.
-
-3. Frontend preview
-
-- Static frontend files (HTML/CSS/JS) can be previewed by opening the main HTML in a browser or running a local static server:
-
-  - Python 3: python -m http.server 8000
-  - Node: npx serve .
-
-Configuration
-
-- Look for application.properties, application.yml, or .env files for environment-specific settings (database, credentials, API keys). Add any required values before running in a production environment.
-
-Project structure (typical)
-
-- src/main/java/        — Java source code
-- src/main/resources/   — templates, static assets, properties
-- src/main/webapp/      — webapp root (if present)
-- public/ or static/    — frontend assets (images, CSS, JS)
-- pom.xml or build.gradle — build configuration
-
-Development
-
-- Follow existing coding conventions in the repository.
-- Add unit and integration tests for backend code.
-- Keep CSS organized and optimize images for web performance.
-
-Testing
-
-- Run tests with your build tool:
-  - mvn test
-  - ./gradlew test
-
-Deployment suggestions
-
-- Java apps: deploy to a servlet container (Tomcat/Jetty), or package as a JAR and deploy to a PaaS (Heroku, AWS Elastic Beanstalk) or Docker container.
-- Frontend/static: host on GitHub Pages, Netlify, or Vercel.
+1. Fix the startup admin-creation logic: stop hardcoding credentials and correct the username check.
+2. Add application.properties.example or .env.example documenting expected environment variables (DB URL, DB user/pass, server port, admin credentials source).
+3. Add a CI workflow (.github/workflows/ci.yml) to run ./mvnw -q -DskipTests=false test and build on PRs.
+4. Review security config (MySecurityConfg and adminConfiguratuion.java) for production safety (password encoding, CSRF, session management).
+5. Add documentation snippets to this README with the exact run commands and any required environment variables once confirmed.
 
 Contributing
 
-Contributions are welcome. Suggested workflow:
-
-1. Fork the repository.
-2. Create a branch: git checkout -b feature/your-feature
-3. Commit changes with descriptive messages.
-4. Open a pull request describing your changes.
-
-When opening issues, include steps to reproduce, expected vs actual behavior, and environment details (OS, Java version, browser).
-
-Roadmap (suggested)
-
-- Add CI (GitHub Actions) for builds and test runs
-- Add database migrations and seed/demo data
-- Implement user accounts and order history
-- Improve accessibility and add an automated accessibility check
-
-License
-
-If this repository does not yet include a LICENSE file, consider adding one (MIT is a common choice for open-source projects).
+- Fork -> branch -> PR. Include tests for new backend behavior. Follow existing Java and JSP conventions.
 
 Contact
 
 Repository owner: https://github.com/lazyskiddie
 
+---
+
 Notes
 
-- This README provides generic, accurate instructions based on the repository composition. Update the Quick start and Project structure sections with exact commands and filenames after confirming the presence of build files (pom.xml / build.gradle) or any framework-specific setup.
+This README now focuses on the important, actionable details (build, runtime, security, and where to look). If you want, I can:
+- Update README further to include exact configuration values extracted from src/main/resources if an application.properties/application.yml exists, or
+- Open PRs that implement the recommended fixes (admin creation, example env file, CI workflow). Tell me which you'd like and I'll proceed.
