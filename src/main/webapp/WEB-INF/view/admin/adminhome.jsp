@@ -17,7 +17,10 @@
 <h1 style="text-align: center;">Admin Panel</h1>
 
  <a href ="${pageContext.request.contextPath}/admin/addService"> Add Coffee </a>
+ <br>
  <a href ="${pageContext.request.contextPath}/admin/readService"> Read Service </a>
+ <br>
+
 
 <%@ include file="../footer.jsp" %>
 </body>
