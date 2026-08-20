@@ -18,22 +18,26 @@ public class MyConfiguration {
         return "index";
     }
 
+    // cart value for the checkout procesess
     @GetMapping("/cart")
     public String cart(){
         return "cart";
     }
 
+    // there will the user will enter their details for placing the orders
     @GetMapping("/checkout")
     public String checkout(){
         return "checkout";
     }
 
+    // to list the products form the admin pannels
     @GetMapping("/product")
     public String product(Model model){
         model.addAttribute("listOfService", coffeeService.readService());
         return "product";
     }
 
+    // to show the products on the home page for the multiples user to select and add to the cart for further options
     @GetMapping("/products")
     public String products(Model model) {
         model.addAttribute("listOfService", coffeeService.readService());
