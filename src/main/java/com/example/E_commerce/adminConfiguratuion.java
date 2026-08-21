@@ -71,4 +71,33 @@ public class adminConfiguratuion {
         redirectAttributes.addFlashAttribute("message", "Coffee deleted successfully");
         return "redirect:/admin/readService";
     }
+
+    @GetMapping("/updateCoffee")
+    public String updateCoffee(@RequestParam int id, Model model) {
+        Coffee coffee = coffeeService.getCoffeeById(id);
+        model.addAttribute("coffee", coffee);
+        return "admin/updateService";
+    }
+
+    // Add this method to handle the update POST request (save changes)
+    @PostMapping("/updateCoffee")
+    public String updateCoffee(@ModelAttribute Coffee coffee, RedirectAttributes redirectAttributes) {
+        try {
+            MultipartFile image = coffee.getImage();
+            String originalFileName = coffee.getImageFileName(); // Keep existing image if not changed
+
+            if (image != null && !image.isEmpty()) {
+                File saveDir = new File("src/main/resources/static/images/Services");
+                originalFileName = UUID.randomUUID().toString() + "_" + image.getOriginalFilename();
+                File file = new File(saveDir.getAbsolutePath(), originalFileName);
+                image.transferTo(file);
+            }
+
+            coffeeService.updateCoffee(coffee, originalFileName);
+            redirectAttributes.addFlashAttribute("message", "Coffee updated successfully");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("message", "Failed to update coffee: " + e.getMessage());
+        }
+        return "redirect:/admin/readService";
+    }
 }
