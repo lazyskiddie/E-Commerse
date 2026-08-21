@@ -36,9 +36,21 @@ public class CoffeeServiceImpl implements CoffeeService {
             if (imageFile.exists()) {
                 imageFile.delete();
             }
+            coffeeRepo.deleteById(id);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public Coffee getCoffeeById(int id) {
+        return coffeeRepo.findById(id).orElse(null);
+    }
+
+    @Override
+    public Coffee updateCoffee(Coffee coffee, String imageFileName) {
+        coffee.setImageFileName(imageFileName);
+        return coffeeRepo.save(coffee);
     }
 }

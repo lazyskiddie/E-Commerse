@@ -13,4 +13,8 @@ public interface CoffeeService {
     List<Coffee> readService();
 
     Void deleteCoffee(String realPath, int id, String imageFileName);
+
+    Coffee getCoffeeById(int id);
+
+    Coffee updateCoffee(Coffee coffee, String imageFileName);
 }
